@@ -31,4 +31,18 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe the home section
 observer.observe(homeSection);
+// JavaScript to handle camera access
+const startCameraButton = document.getElementById('start-camera');
+const cameraStream = document.getElementById('camera-stream');
+const cameraView = document.getElementById('camera-view');
 
+// Function to start the camera
+startCameraButton.addEventListener('click', async () => {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        cameraStream.srcObject = stream;
+        cameraView.style.display = 'block'; // Show the camera view
+    } catch (err) {
+        alert('Error accessing camera: ' + err.message);
+    }
+});

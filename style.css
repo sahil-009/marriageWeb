@@ -441,6 +441,214 @@ flex-wrap: wrap;
 .photography-card .btn:hover {
     background-color: var(--clr1);
 }
+/* vrrrrrrrrrrrrrrrrrrrrrrr */
+/* Camera Section */
+.camera {
+    padding: 7rem 2%;
+    background-color: var(--clr4);
+    color: var(--clr3);
+    text-align: center;
+}
+
+.camera .title {
+    margin-bottom: 4rem;
+}
+
+.camera-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.camera-item {
+    flex: 1 1 22rem;
+    background: var(--clr3);
+    color: var(--clr4);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.camera-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.camera-item img {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+}
+
+.camera-item h2 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    color: var(--clr2);
+}
+
+.camera-item p {
+    font-size: 1.4rem;
+    margin: 1rem;
+}
+
+.camera-item h3 {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+    color: var(--clr2);
+}
+
+/* VR Section */
+/* Camera Section */
+.camera {
+    padding: 7rem 2%;
+    background-color: var(--clr4);
+    color: var(--clr3);
+    text-align: center;
+}
+
+.camera .title {
+    margin-bottom: 4rem;
+}
+
+.camera-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.camera-item {
+    flex: 1 1 22rem;
+    background: var(--clr3);
+    color: var(--clr4);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.camera-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.camera-item img {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+}
+
+.camera-item h2 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    color: var(--clr2);
+}
+
+.camera-item p {
+    font-size: 1.4rem;
+    margin: 1rem;
+}
+
+.camera-item h3 {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+    color: var(--clr2);
+}
+
+/* VR Section */
+.vr {
+    padding: 7rem 2%;
+    background-color: var(--clr4);
+    color: var(--clr3);
+    text-align: center;
+}
+
+.vr .title {
+    margin-bottom: 4rem;
+}
+
+.vr-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.vr-item {
+    flex: 1 1 30rem; /* Make each VR card wider */
+    background: var(--clr3);
+    color: var(--clr4);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.vr-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.vr-item h2 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    color: var(--clr2);
+}
+
+.vr-item p {
+    font-size: 1.4rem;
+    margin: 1rem;
+}
+
+.vr-item h3 {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+    color: var(--clr2);
+}
+
+/* Camera Access */
+.camera-access {
+    margin-top: 4rem;
+    background-color: var(--clr2);
+    color: var(--clr3);
+    padding: 3rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.camera-access h2 {
+    font-size: 2.5rem;
+    color: var(--clr3);
+}
+
+.camera-access p {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+}
+
+#start-camera {
+    padding: 1rem 2rem;
+    background-color: var(--clr1);
+    color: var(--clr3);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-camera:hover {
+    background-color: var(--clr2);
+}
+
+#camera-view {
+    margin-top: 20px;
+}
+
 
 
 
@@ -980,6 +1188,3 @@ section.visible {
         color: black;
     }
 }
-
-
-
