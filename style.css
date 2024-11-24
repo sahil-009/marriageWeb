@@ -73,6 +73,7 @@ color: var(--clr4 );
 
 
 /*-------header section--------*/
+
 .head
 {
     position: fixed;
@@ -86,7 +87,13 @@ color: var(--clr4 );
     align-items: center;
     justify-content: space-between;
 }
-
+.logo img {
+    width: 30px; 
+    height: 30px; 
+    margin-right: 10px;
+    border-radius: 50%; 
+    box-shadow: 2px 2px 5px #ccc;
+}
 .fa-heart
 {
     color:bisque;
@@ -120,7 +127,7 @@ color: var(--clr5);
     color: var(--clr3);
 }
 
-/*--------home design---------*/
+/* --------home design--------- */
 
 .home {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url('ASSET/2151193719.jpg');
@@ -161,6 +168,8 @@ margin: .5rem;
     font-weight: 600;
     color: var(--clr4);
 }
+
+
 
 /*-------SERVICES section--------*/
 .services-row{
@@ -648,6 +657,25 @@ flex-wrap: wrap;
 #camera-view {
     margin-top: 20px;
 }
+
+/* Prompt */
+.custom-card-generator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Optional, if you want to space items inside the container */
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS', cursive;
+    background-color: #f4faff;
+    box-shadow: 3px 3px 0px #d0d0d0;
+    width: 80%;
+    margin: 0 auto; /* Centers the element horizontally */
+    position: relative;
+    top: 50%; /* Vertically center */
+    transform: translateY(-50%); /* Offset the element by 50% of its height */
+}
+
 
 
 
