@@ -57,8 +57,10 @@ function createInvitation(theme, bgColor, event, names, date, venue) {
     ctx.beginPath();
     ctx.arc(300, 700, 50, 0, Math.PI, false);
     ctx.stroke();
-
-    // Show the download button
+//invite
+location.href = 'inivite.html';
+  
+// Show the download button
     const downloadButton = document.getElementById("downloadCard");
     downloadButton.style.display = "block";
     downloadButton.onclick = () => {

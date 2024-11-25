@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+   
+
     <!-- Your JavaScript (should be after GSAP) -->
     <script src="script.js" defer></script>
 
@@ -19,17 +22,16 @@
 <body>
 
     <header class="head">
-        <a href="" class="logo">
-            <img src="/ASSET/logo1.jpeg" alt="">
-            <i class="fas fa-heart"></i> EVENTIFY</span><i class = "fas fa-heart"></i></a>
+       
+        <a href="" class="logo" ><i class="fas fa-heart"></i> EVENTIFY</span><i class = "fas fa-heart"></i></a>
         <nav class="navbar">
 <a href="#home">Home</a>
 <a href="#service">Service</a>
 <a href="#vendor">Vendor</a>
 <a href="#venue">Venue</a>
 <a href="#invite">E-invites</a>
-<a href="#photographer">Photographer</a>
-<a href="#vr">VR</a>
+<a href="#photography">photography</a>
+<a href="#vr">AR Demo</a>
 <a href="#contact">Contact</a>
 
         </nav>
@@ -76,8 +78,11 @@
     <div class="services-row">
         <div class="services-col">
             <i class="fas fa-book-open"></i>
-            <h2>Invitation</h2>
+            <h2>Invitation </h2>
             <p>Get the best invitation cards for your Events</p>
+            <button class="service-button" onclick="location.href='inivite.html';">Generate</button>
+
+
         </div>
 
         <div class="services-col">
@@ -325,24 +330,13 @@
          <div class="invitation-box">
             <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
          </div>
-         <!-- 11 -->
-         <div class="invitation-box">
-            <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
-         </div>
-         <!-- 12 -->
-         <div class="invitation-box">
-            <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
-         </div>
     </div>
  </section>
-
-<!-- prompt -->
+ <!-- prompt -->
 <div class="custom-card-generator">
     <input type="text" placeholder="generate your custom card ..." class="custom-input" />
-    <button class="custom-button">Generate</button>
+    <button class="custom-button" onclick="window.location.href='invitation.html';">Generate</button>
 </div>
-
-
 
 <!-- Photography -->
 <section id="photography" class="photography">
@@ -357,7 +351,8 @@
             <h2>Wedding Photography</h2>
             <p>Capture your special moments with our professional wedding photographers.</p>
             <h3>Price: ₹50,000</h3>
-            <button class="btn">Learn More</button>
+            <button class="btn" onclick="window.location.href='photo.html';">PHOTO</button>
+            <!-- <button class="btn" >Learn More</button> -->
         </div>
         <!-- Package 2 -->
         <div class="photography-card">
@@ -386,42 +381,69 @@
     </div>
 </section>
 
-<!-- vr -->
+<!-- AR -->
 <section id="vr" class="vr">
     <div class="title">
-        <h1><span>V</span>irtual <span>R</span>eality</h1>
-        <p>Experience immersive virtual reality experiences for your events.</p>
+        <h1><span>A</span>ugmented <span>R</span>eality</h1>
+        <p>Experience immersive virtual reality and augmented reality experiences for your events.</p>
     </div>
+    
+    
     <div class="vr-container">
-        <!-- VR Experience 1 -->
+
+         <!-- AR Camera Access -->
+         <div class="camera-access">
+            <h2>Access Your Camera for AR</h2>
+            <p>Click below to start or stop AR:</p>
+            <button class="btn" id="start-ar">Start AR</button>
+            <button class="btn" id="stop-ar" style="display:none;">Stop AR</button>
+        
+            <div id="camera-view" style="display:none; margin-top:20px; position: relative;">
+                <video id="camera-stream" autoplay playsinline style="width: 100%; height: 500px;"></video>
+                <canvas id="overlay" style="position: absolute; top: 0; left: 0;"></canvas>
+            </div>
+        
+            <div id="object-controls">
+                <button onclick="addObject('balloon')">Add Balloon</button>
+                <button onclick="addObject('table')">Add Table</button>
+                <button onclick="addObject('curtain')">Add Curtain</button>
+                <button onclick="removeObject()">Remove Selected Object</button>
+            </div>
+        </div>
+
+        <!-- Sliding list of objects -->
+<div id="sliding-panel">
+    <button onclick="addObject('balloon')">Add Balloon</button>
+    <button onclick="addObject('table')">Add Table</button>
+    <button onclick="addObject('curtain')">Add Curtain</button>
+    <button onclick="removeObject()">Remove Object</button>
+</div>
+
+<!--
+      
         <div class="vr-item">
-            <h2>VR Wedding Experience</h2>
+            <h2>AR Wedding Experience</h2>
             <p>Step into the virtual world of a wedding experience with 360° views.</p>
             <h3>Price: ₹60,000</h3>
-            <button class="btn">Try Now</button>
+            <button class="btn" id="try-now-vr">Try Now</button>
         </div>
-        <!-- VR Experience 2 -->
+
+        
         <div class="vr-item">
-            <h2>360° VR Event</h2>
-            <p>Experience your event from any angle with our 360° VR technology.</p>
+            <h2>360° AR Event</h2>
+            <p>Experience your event from any angle with our 360° AR technology.</p>
             <h3>Price: ₹45,000</h3>
-            <button class="btn">Try Now</button>
+            <button class="btn" id="try-now-vr2">Try Now</button>
         </div>
-        <!-- VR Experience 3 -->
+
+        
         <div class="vr-item">
-            <h2>VR 3D Experience</h2>
+            <h2>AR 3D Experience</h2>
             <p>Explore an immersive 3D virtual environment for your event.</p>
             <h3>Price: ₹75,000</h3>
-            <button class="btn">Try Now</button>
-        </div>
+            <button class="btn" id="try-now-vr3">Try Now</button>
+        </div> -->
     </div>
-    <div class="camera-access">
-        <h2>Access Your Camera for VR</h2>
-        <p>Click the button below to use your camera and experience a VR demo.</p>
-        <button class="btn" id="start-camera">Start Camera</button>
-        <div id="camera-view" style="display:none; margin-top:20px;">
-            <video id="camera-stream" width="100%" height="500px" autoplay></video>
-        </div>
     </div>
 </section>
 
@@ -489,5 +511,6 @@ window.onscroll = () =>
         document.querySelector('#menu-bar').classList.remove('active');
     }
 }
+
 </script>
 </html>

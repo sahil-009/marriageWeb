@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profiles</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: white;
+            padding-bottom: 20px;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-info {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .photo-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .photo-price {
+            font-size: 16px;
+            color: #27ae60;
+            margin: 5px 0;
+        }
+
+        .photo-rating {
+            color: #f1c40f;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Profiles</h1>
+    </header>
+    <div class="gallery-container">
+        <div class="photo-card">
+            <img src="ASSET/photo.jpg" alt="Camera Crew">
+            <div class="photo-info">
+                <p class="photo-title">The Cretaive Studios</p>
+                <p class="photo-price">Rs.1,00,000</p>
+                <p class="photo-rating">⭐⭐⭐⭐⭐ (5.0)</p>
+            </div>
+        </div>
+        <div class="photo-card">
+            <img src="ASSET/weddingpic.jpg" alt="Cityscape Night">
+            <div class="photo-info">
+                <p class="photo-title">JP photos</p>
+                <p class="photo-price">Rs.80,000</p>
+                <p class="photo-rating">⭐⭐⭐⭐ (4.0)</p>
+            </div>
+        </div>
+        <div class="photo-card">
+            <img src="ASSET/weddingpic1.jpg" alt="Mountain View">
+            <div class="photo-info">
+                <p class="photo-title"> Jain photos </p>
+                <p class="photo-price">Rs.60,000</p>
+                <p class="photo-rating">⭐⭐⭐☆ (3.5)</p>
+            </div>
+        </div>
+        <div class="photo-card">
+            <img src="ASSET/weddingpic3.jpg" alt="Sunset Beach">
+            <div class="photo-info">
+                <p class="photo-title">Roychand photos</p>
+                <p class="photo-price">Rs.40,000</p>
+                <p class="photo-rating">⭐⭐⭐ (3.0)</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

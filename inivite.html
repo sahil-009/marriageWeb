@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title></title>
+</head>
+<style>
+   /* General Styles */
+body {
+   margin: 0;
+   font-family: Arial, sans-serif;
+   background-color: #f8f9fa;
+   color: #333;
+   line-height: 1.6;
+}
+
+h1 {
+   font-size: 2.5rem;
+   text-align: center;
+   margin: 20px 0;
+   color: #004aad; /* Secondary Color */
+}
+
+h1 span {
+   color: #5de0e6; /* Primary Color */
+}
+
+/* Title Section */
+.title {
+   text-align: center;
+   margin-bottom: 20px;
+}
+
+.title p {
+   font-size: 1rem;
+   color: #666;
+}
+
+/* Invitation Section */
+.invitation-row {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 20px;
+   padding: 20px;
+}
+
+.invitation-box {
+   width: 220px;
+   height: 320px;
+   border-radius: 10px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+   overflow: hidden;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   background-color: white;
+}
+
+.invitation-box img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   transition: transform 0.3s ease;
+}
+
+.invitation-box:hover {
+   transform: scale(1.05);
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.invitation-box:hover img {
+   transform: scale(1.1);
+}
+
+/* Custom Card Generator */
+.custom-card-generator {
+   text-align: center;
+   padding: 20px;
+   background-color: #004aad;
+   color: white;
+   border-radius: 10px;
+   margin: 30px auto;
+   max-width: 400px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-card-generator .custom-input {
+   width: 80%;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   margin-bottom: 10px;
+   font-size: 1rem;
+}
+
+.custom-card-generator .custom-button {
+   padding: 10px 20px;
+   background-color: #5de0e6; /* Primary Color */
+   color: #004aad; /* Secondary Color */
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 1rem;
+   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-card-generator .custom-button:hover {
+   background-color: #004aad; /* Secondary Color */
+   color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .invitation-row {
+       flex-direction: column;
+       align-items: center;
+   }
+
+   .invitation-box {
+       width: 90%;
+   }
+
+   .custom-card-generator {
+       width: 90%;
+   }
+}
+
+</style>
+<body>
+    <section class="inivite" id ="inivite">
+        <div class="title">
+            <h1>Card <span>Design</span></h1>
+            <p>Get the best card designs</p>
+        </div>
+        <div class="invitation-row">
+            <!-- 1 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 2 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 3 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 4 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 5 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 6 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+              <!-- 7 -->
+              <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 8 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 9 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+             <!-- 10 -->
+             <div class="invitation-box">
+                <img src="ASSET/5d6dc677-39ec-4b14-add1-cd139ed64073-cover_(4).jpg" alt="">
+             </div>
+        </div>
+     </section>
+     <!-- prompt -->
+    <div class="custom-card-generator">
+        <input type="text" placeholder="generate your custom card ..." class="custom-input" />
+        <button class="custom-button" onclick="window.location.href='invitation.html';">Generate</button>
+    </div>
+</body>
+</html>

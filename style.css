@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,,wght@0,400;0,700;1,400;1,700&display=swap');
 :root
 {
-    --clr1:rgb(162, 18, 88);
+    --mixed-color: #2ea7d7;
+    --clr1:rgb(122, 178, 211);
     --clr2:rgb(222, 4, 142);
     --clr3:#fff;
     --clr4:#000;
@@ -180,8 +181,8 @@ margin: .5rem;
 }
 
 .services-row :hover{
-    transform: rotate(5deg);
-    transition: 1s cubic-bezier(0.075,0.82,0.165,1);
+    transform: rotate(5deg); 
+     transition: 1s cubic-bezier(0.075,0.82,0.165,1);
 }
 
 .services-col
@@ -677,6 +678,10 @@ flex-wrap: wrap;
 }
 
 
+
+
+
+
 /* foooooootttterrrrr section */
 footer
 {
@@ -844,8 +849,8 @@ html {
     transition: box-shadow 0.3s ease-in-out;
 }
 .services-row:hover {
-    transform: rotate(3deg);
-    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* transform: rotate(3deg);
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1); */
 }
 .social i:hover {
     transform: rotate(180deg);
@@ -971,10 +976,10 @@ section.visible {
     flex: 1 1 25rem;
     padding: 1.2rem;
     margin: 1.5rem;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    /* transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
 }
 .services-col:hover {
-    transform: scale(1.05) rotate(3deg);
+    /* transform: scale(1.05) rotate(3deg); */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 .vendor-row {
@@ -1211,4 +1216,25 @@ section.visible {
         text-decoration: none;
         color: black;
     }
+}
+
+#object-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#object-controls button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: var(--clr2);
+    color: var(--clr3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#object-controls button:hover {
+    background-color: var(--clr1);
 }
