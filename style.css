@@ -128,7 +128,7 @@ color: var(--clr5);
     color: var(--clr3);
 }
 
-/* --------home design--------- */
+/* -------- home design -------- */
 
 .home {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url('ASSET/2151193719.jpg');
@@ -170,7 +170,7 @@ margin: .5rem;
     color: var(--clr4);
 }
 
-
+ 
 
 /*-------SERVICES section--------*/
 .services-row{

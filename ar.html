@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Implementation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <head>
+        <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #1e90ff, #87cefa);
+        color: #333;
+    }
+
+    header {
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        animation: fadeInDown 1s ease;
+    }
+
+    section {
+        padding: 20px;
+        text-align: center;
+    }
+
+    #camera-view {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        margin: 20px 0;
+        border: 2px solid #007bff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        animation: zoomIn 0.8s ease;
+    }
+
+    #camera-stream {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .controls {
+        margin-top: 20px;
+    }
+
+    .controls button {
+        margin: 10px;
+        padding: 12px 20px;
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .controls button:hover {
+        background: linear-gradient(90deg, #0056b3, #003d7a);
+        transform: translateY(-5px);
+    }
+
+    .controls button:active {
+        transform: translateY(2px);
+    }
+
+    footer {
+        margin-top: 20px;
+        padding: 15px 20px;
+        background: linear-gradient(90deg, #333, #111);
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes zoomIn {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+
+        </style>
+    </head>
+    
+<body>
+    <header>
+        <h1>Augmented Reality Implementation</h1>
+    </header>
+
+    <section>
+        <h2>Start AR Experience</h2>
+        <p>Click the button below to access your camera and experience AR.</p>
+        <button onclick="startCamera()">Start AR</button>
+        <button onclick="stopCamera()">Stop AR</button> <!-- New stop AR button -->
+
+        <div id="camera-view" style="display: none;">
+            <video id="camera-stream" autoplay playsinline></video>
+            <canvas id="overlay"></canvas>
+        </div>
+
+        <div class="controls">
+            <button onclick="addObject('balloon')">Add Balloon</button>
+            <button onclick="addObject('table')">Add Table</button>
+            <button onclick="addObject('curtain')">Add Curtain</button>
+            <button onclick="removeObject()">Remove Object</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AR Experience | All rights reserved.</p>
+    </footer>
+
+    <script>
+        let objects = {}; // To track the added objects
+        let draggingObject = null; // To store the object being dragged
+        let offsetX, offsetY; // To store mouse offset for drag operation
+        let selectedObject = null; // To track the selected (highlighted) object
+        let cameraStream = null; // To store the camera stream for stopping
+
+        function startCamera() {
+            const cameraView = document.getElementById("camera-view");
+            const video = document.getElementById("camera-stream");
+
+            // Request access to the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    cameraStream = stream; // Store the stream to stop it later
+                    video.srcObject = stream;
+                    cameraView.style.display = "block";
+                })
+                .catch(error => {
+                    console.error("Camera access error:", error);
+                    alert("Unable to access camera. Please allow camera permissions.");
+                });
+        }
+
+        function stopCamera() {
+            const cameraView = document.getElementById("camera-view");
+            const video = document.getElementById("camera-stream");
+
+            if (cameraStream) {
+                const tracks = cameraStream.getTracks();
+                tracks.forEach(track => track.stop()); // Stop all media tracks
+                video.srcObject = null; // Disconnect the video stream
+                cameraView.style.display = "none"; // Hide the AR view
+            }
+        }
+
+        function addObject(objectType) {
+            const canvas = document.getElementById("overlay");
+            const ctx = canvas.getContext("2d");
+            const img = new Image();
+
+            // Set canvas dimensions to match the camera view
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+
+            // Load image based on object type
+            if (objectType === "balloon") {
+                img.src = "assets/bal1.png"; // Replace with actual image path
+            } else if (objectType === "table") {
+                img.src = "assets/table.png"; // Replace with actual image path
+            } else if (objectType === "curtain") {
+                img.src = "assets/table1.png"; // Replace with actual image path
+            }
+
+            // Draw the image on the canvas when it loads
+            img.onload = function () {
+                // Store the image in the objects state to track if it's already on the canvas
+                if (!objects[objectType]) {
+                    objects[objectType] = { img: img, x: canvas.width / 4, y: canvas.height / 4, width: canvas.width / 2, height: canvas.height / 2 };
+                } else {
+                    // Remove the object if it's already added
+                    delete objects[objectType];
+                }
+                renderObjects();
+            };
+        }
+
+        function renderObjects() {
+            const canvas = document.getElementById("overlay");
+            const ctx = canvas.getContext("2d");
+
+            // Clear the canvas before redrawing objects
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Loop through the objects state and draw each image
+            for (let objectType in objects) {
+                const object = objects[objectType];
+                
+                // Draw the object image
+                ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+
+                // Highlight selected object with a black border
+                if (selectedObject === object) {
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = "black"; // Set border color to black
+                    ctx.strokeRect(object.x, object.y, object.width, object.height);
+                }
+            }
+        }
+
+        function removeObject() {
+            if (selectedObject) {
+                // Remove the selected object from the objects state
+                for (let objectType in objects) {
+                    if (objects[objectType] === selectedObject) {
+                        delete objects[objectType];
+                        selectedObject = null; // Deselect the object after removal
+                        break;
+                    }
+                }
+            } else {
+                // Clear the entire canvas if no object is selected
+                const canvas = document.getElementById("overlay");
+                const ctx = canvas.getContext("2d");
+
+                // Clear the canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Reset the objects state
+                objects = {};
+            }
+            renderObjects(); // Re-render the updated objects
+        }
+
+        // Mouse events for drag-and-drop functionality
+        const canvas = document.getElementById("overlay");
+
+        // Detect when a user clicks on an object and starts dragging it
+        canvas.addEventListener("mousedown", function (e) {
+            const mouseX = e.offsetX;
+            const mouseY = e.offsetY;
+
+            // Check if any object is clicked
+            for (let objectType in objects) {
+                const object = objects[objectType];
+                if (mouseX >= object.x && mouseX <= object.x + object.width &&
+                    mouseY >= object.y && mouseY <= object.y + object.height) {
+                    draggingObject = object;
+                    offsetX = mouseX - object.x;
+                    offsetY = mouseY - object.y;
+                    selectedObject = object; // Set the clicked object as selected
+                    break;
+                }
+            }
+        });
+
+        // Update the position of the dragged object
+        canvas.addEventListener("mousemove", function (e) {
+            if (draggingObject) {
+                const mouseX = e.offsetX;
+                const mouseY = e.offsetY;
+
+                draggingObject.x = mouseX - offsetX;
+                draggingObject.y = mouseY - offsetY;
+                renderObjects();
+            }
+        });
+
+        // Stop dragging when the mouse is released
+        canvas.addEventListener("mouseup", function () {
+            draggingObject = null;
+        });
+
+        // Optional: For mobile support, handle touch events as well
+        canvas.addEventListener("touchstart", function (e) {
+            const touchX = e.touches[0].pageX - canvas.offsetLeft;
+            const touchY = e.touches[0].pageY - canvas.offsetTop;
+
+            for (let objectType in objects) {
+                const object = objects[objectType];
+                if (touchX >= object.x && touchX <= object.x + object.width &&
+                    touchY >= object.y && touchY <= object.y + object.height) {
+                    draggingObject = object;
+                    offsetX = touchX - object.x;
+                    offsetY = touchY - object.y;
+                    selectedObject = object;
+                    break;
+                }
+            }
+        });
+
+        canvas.addEventListener("touchmove", function (e) {
+            if (draggingObject) {
+                const touchX = e.touches[0].pageX - canvas.offsetLeft;
+                const touchY = e.touches[0].pageY - canvas.offsetTop;
+
+                draggingObject.x = touchX - offsetX;
+                draggingObject.y = touchY - offsetY;
+                renderObjects();
+            }
+        });
+
+        canvas.addEventListener("touchend", function () {
+            draggingObject = null;
+        });
+    </script>
+</body>
+</html>
